@@ -1,21 +1,34 @@
-
 version: 2
 
 models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: my_first_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+sources:
+  - name: jaffle_shop
+    database: dazzling-ego-468517-m6
+    schema: dbt_kverma
+    tables:
+      - name: jaffle_shop_customers
+      - name: jaffle_shop_orders
+
+  - name: stripe
+    database: dazzling-ego-468517-m6
+    schema: dbt_kverma
+    tables:
+      - name: stripe_payment
