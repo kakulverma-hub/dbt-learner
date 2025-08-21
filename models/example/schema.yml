@@ -31,4 +31,5 @@ sources:
     database: dazzling-ego-468517-m6
     schema: dbt_kverma
     tables:
+      - name: stripe_customer       # 👈 added this
       - name: stripe_payment
