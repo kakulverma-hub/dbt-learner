@@ -1,0 +1,15 @@
+version: 2
+sources:
+  - name: jaffle_shop
+    database: dazzling-ego-468517-m6
+    schema: dbt_kverma
+    tables:
+      - name: jaffle_shop_customers
+      - name: jaffle_shop_orders
+
+  - name: stripe
+    database: dazzling-ego-468517-m6
+    schema: dbt_kverma
+    tables:
+      - name: stripe_customer       # 👈 added this
+      - name: stripe_payment
