@@ -1,15 +1,42 @@
 version: 2
+
 sources:
   - name: jaffle_shop
+    description: "Source data for jaffle shop customers and orders"
     database: dazzling-ego-468517-m6
     schema: dbt_kverma
+
     tables:
       - name: jaffle_shop_customers
+        description: "One unique customer per row"
+        columns:
+          - name: id
+            description: "Primary key for customers"
+            tests:
+              - unique
+              - not_null
+
       - name: jaffle_shop_orders
+        description: "One order per row"
+        loaded_at_field: _etl_loaded_at
+        freshness:
+          warn_after: {count: 2, period: day}
+          error_after: {count: 3, period: day}
+        columns:
+          - name: id
+            description: "Primary key for orders"
+            tests:
+              - unique
+              - not_null
+          - name: status
+            description: "{{ doc('order_status') }}"
 
   - name: stripe
+    description: "Stripe source data"
     database: dazzling-ego-468517-m6
     schema: dbt_kverma
     tables:
-      - name: stripe_customer       # 👈 added this
+      - name: stripe_customer
+        description: "Stripe customer information"
       - name: stripe_payment
+        description: "Stripe payment transactions"
